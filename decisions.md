@@ -73,3 +73,22 @@ en pat = 10, samt restore best weights = true, så vi får de bedste vægte og i
 
 Primært valgt StandardScaler fordi vi havde features som capital-gain/loss, som har meget store
 outliers, som MinMaxScaler er følsom overfor, fordi den vil presse medianen meget tæt på 0
+
+MLP - Fintuning
+
+0.7497 - recall: 0.6106
+f1        : 0.6731
+loss      : 0.3203
+precision : 0.7497
+recall    : 0.6106
+
+Lag max fra 128 til 256
+Lag max 3 til max 10
+Epochs 10 > 30
+EarlyStopping
+Fjernet SGD optimizer
+
+f1        : 0.2557
+loss      : 0.6712
+precision_2: 0.3550
+recall_2  : 0.1998

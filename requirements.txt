@@ -4,3 +4,5 @@ numpy==2.4.4
 pandas==3.0.2
 ucimlrepo==0.0.7
 keras==3.14.0
+keras_tuner==
+keras-tuner
