@@ -15,12 +15,61 @@ Hvilke metrics bruger vi til at måle hvor god vores arkitektur er, og hvorfor v
 - Dette betyder at det er et imbalanced datasæt og vi har derfor valgt at bruge 
 - recall, precision og f1 da accuracy er misvisende.
 
+Grunden til vi ikke måler accuracy, er fordi en naiv model der bare gætter >50K, vil have ret
+3/4 gange. 
+
+Fordi datasættet er ubalanceret bør vi bruge stratified train_test split, 
+for at sikre os at der er en lige fordeling. Altså at de har samme fordeling af
+labels. Fjerne sampling bias. 
+
+
 Vi starter med at klargøre dataen:
 - Fordi education og education_num repræsenterer det samme, men education_num allerede er
 - numerisk, samt har et hierakisk forhold hvor højere tal = højere udd. niveau, vælger vi at beholde
 - education_num og fjerne education
 
+For at vi kan arbejde med dataen skal vi lave alle str værdierne til numeriske, derfor vælger vi at 
+one-hot-encode følgende features, fordi de ikke har noget internt hieraki
+- occupation
+- workclass
+- marital-status
+- relationship-status
+- race
+- native-country
 
+native country har 42 forskellige, hvilket vil give 42 features hvis vi one-hot encoder,
+derfor har vi taget et valg om at tage lavet det til 10, ved at samle alt efter 9 i en 10'er
+kaldet other
 
+Sex og Income har kun to udfald, henholdsvis Male/Female <=50K eller >50K
+Derfor bruger vi binary encoding her.
 
+Splitter det først i 80/20 til træning og test
+splitter derefter træning i train og val
+Vi bruger stratify begge gange for at sikre ens fordeling af labels pga ubalance.
 
+Vi genbruger alle ovenstående trin i begge modeller, men fremadrettet deler vi op,
+da der er forskellige metoder og krav til hvordan vi encoder.
+
+Da det er binær classification <=50k eller >50K bruger vi binary cross-entropy
+som loss function.
+
+MLP:
+
+I forhold til de manglende værdier, så lavede vi alle '?' om til NaN.
+Vi kan vælge mellem at erstatte dem med andre værdier, medianer etc, behandle dem om sin egen
+kategori, eller fjerne dem.
+
+Hvis man brugte dem som sin egen kategori, ville man antage at de blev sat af samme grund.
+Hvis man fjerne alle rækker med NaN efter vi replacede ? med NaN, ender vi på 45222 rækker,
+hvilket vi syntes er okay at miste, for at vores datasæt er rent. 
+Fordelingen mellem de to kategorier steg også meget  meget minimalt, men ikke den forkerte vej.
+
+i preprocessing fejlede den fordi den ikke kunne finde 'France', hvilke betyder at
+valideringssættet ikke havde en kategori som train havde, derfor smider vi handle_unkown=ignore på
+
+Første model overfittede tydeligt efter 4-5 epochs, så der blev tilføjet early stopping med
+en pat = 10, samt restore best weights = true, så vi får de bedste vægte og ikke bare de sidste.
+
+Primært valgt StandardScaler fordi vi havde features som capital-gain/loss, som har meget store
+outliers, som MinMaxScaler er følsom overfor, fordi den vil presse medianen meget tæt på 0
