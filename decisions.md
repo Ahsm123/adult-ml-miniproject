@@ -82,13 +82,13 @@ loss      : 0.3203
 precision : 0.7497
 recall    : 0.6106
 
-Lag max fra 128 til 256
+Neuroner pr. lag max fra 128 til 256
 Lag max 3 til max 10
 Epochs 10 > 30
 EarlyStopping
 Fjernet SGD optimizer
 
-f1        : 0.2557
-loss      : 0.6712
-precision_2: 0.3550
-recall_2  : 0.1998
+f1        : 0.6285
+loss      : 0.3238
+precision : 0.7952
+recall    : 0.5196
