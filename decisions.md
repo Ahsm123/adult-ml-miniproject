@@ -92,3 +92,8 @@ f1        : 0.6285
 loss      : 0.3238
 precision : 0.7952
 recall    : 0.5196
+
+har sat samme widst i hvert hidden layer.
+
+f1        : 0.6663
+loss      : 0.3234
