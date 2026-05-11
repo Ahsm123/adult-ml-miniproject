@@ -97,3 +97,13 @@ har sat samme widst i hvert hidden layer.
 
 f1        : 0.6663
 loss      : 0.3234
+
+Vi skal have kigget på: 
+Lav corr_matrix og stratify efter det, og ikke på target.
+da vi gerne vil have lige fordeling af de vigtigste features
+
+Til eksamen
+datasæt og hvordan det ser ud
+hvad problemstillingen er, og de valg vi har taget med daata.
+arkitektur, hvorfor valgt dette
+sammenligning / resultat
