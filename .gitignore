@@ -9,6 +9,7 @@ __pycache__/
 # Distribution / packaging
 .Python
 build/
+data/*.csv
 develop-eggs/
 dist/
 downloads/
@@ -216,3 +217,10 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+/notebooks/data/adult_raw.csv
+/notebooks/data/X_test.csv
+/notebooks/data/y_val.csv
+/notebooks/data/y_train.csv
+/notebooks/data/y_test.csv
+/notebooks/data/X_val.csv
+/notebooks/data/X_train.csv
