@@ -1,13 +1,10 @@
-6/5
-Which architectures did we choose and why?
-
 Opgaven siger vi skal vælge 2 algoritmer (arkitekturer). Vi kan vælge MLP, CNN
-random forest, GBT.
+random forest, GBT(ink. HGBT)
 
 Da CNN er til billedgenkendelse, og Random Forest + GBT er samme familie,
 vælger vi at sammenligne MLP med GBT. 
 
-Vi har 48000+ rækker, hvilket vi vurderer at være nok til MLP
+Vi har 48000+ rækker
 
 Hvilke metrics bruger vi til at måle hvor god vores arkitektur er, og hvorfor valgte vi den/dem?
 
@@ -27,6 +24,9 @@ Vi starter med at klargøre dataen:
 - Fordi education og education_num repræsenterer det samme, men education_num allerede er
 - numerisk, samt har et hierakisk forhold hvor højere tal = højere udd. niveau, vælger vi at beholde
 - education_num og fjerne education
+
+Vi fjerner også fnlwgt, fordi der ikke står en ordentlig beskrivelse af featuren på UCI,
+og korrelationen mod income er -0.07.
 
 For at vi kan arbejde med dataen skal vi lave alle str værdierne til numeriske, derfor vælger vi at 
 one-hot-encode følgende features, fordi de ikke har noget internt hieraki
@@ -98,9 +98,12 @@ har sat samme widst i hvert hidden layer.
 f1        : 0.6663
 loss      : 0.3234
 
-Vi skal have kigget på: 
-Lav corr_matrix og stratify efter det, og ikke på target.
-da vi gerne vil have lige fordeling af de vigtigste features
+MLP Final:
+f1:     0.694
+prec.   0.704
+recall. 0.685
+
+Vi skal have kigget på:
 
 Til eksamen
 datasæt og hvordan det ser ud
